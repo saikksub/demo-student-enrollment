@@ -4,18 +4,33 @@
     class="app-wrapper"
     view="lHh Lpr lFf"
   >
-    <sidebar @toggle="toggleSidebar" :compact="compactSidebar" />
+    <!-- START register components -->
+    <about />
+    <confirm />
+    <!-- END register components -->
+
+    <sidebar
+      :compact="compactSidebar"
+      @toggle="toggleSidebar"
+      @logout="onClickLogout"
+      @about="onAbout"
+    />
     <q-page-container class="page-wrapper">
       <router-view />
     </q-page-container>
+
   </q-layout>
 </template>
 
 <script>
+import About from 'components/dialogs/About'
 import Sidebar from 'components/app-default/Sidebar.vue'
+import Confirm from 'components/dialogs/Confirm'
 
 export default {
   components: {
+    About,
+    Confirm,
     Sidebar
   },
   data () {
@@ -24,6 +39,19 @@ export default {
     }
   },
   methods: {
+    onAbout () {
+      this.$root.$emit('about/show')
+    },
+    onClickLogout () {
+      this.$root.$emit('confirm/show', {
+        title: 'Logout',
+        message: 'You are about to logout. Please click YES to loguot your account from the application.',
+        callback: this.onLogout
+      })
+    },
+    onLogout () {
+      // TODO: use store to logout from the application
+    },
     toggleSidebar () {
       this.compactSidebar = !this.compactSidebar
     }

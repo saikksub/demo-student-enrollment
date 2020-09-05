@@ -1,7 +1,11 @@
 <template>
-  <q-page class="q-page-container">
+  <q-page>
     <div class="page-appbar">
-      hello
+      <q-toolbar>
+        <q-toolbar-title>
+          Dashboard
+        </q-toolbar-title>
+      </q-toolbar>
     </div>
     <div class="page-content">
       <q-list bordered separator>

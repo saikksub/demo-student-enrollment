@@ -8,7 +8,7 @@
     </q-toolbar>
     <q-list>
       <template v-for="item in menu">
-        <q-item :key="item.id" clickable v-ripple>
+        <q-item :key="item.id" clickable v-ripple @click="item.callback">
           <q-item-section avatar>
             <q-icon :name="item.icon" color="primary" />
           </q-item-section>
@@ -27,7 +27,7 @@
     <div class="sidebar-options">
       <q-list>
         <template v-for="item in options">
-          <q-item :key="item.id" clickable v-ripple>
+          <q-item :key="item.id" clickable v-ripple @click="item.callback">
             <q-item-section avatar>
               <q-icon :name="item.icon" color="primary" />
             </q-item-section>
@@ -62,34 +62,40 @@ export default {
         {
           id: 'app-sidebar-menu-item-dashboard',
           title: 'Dashboard',
-          icon: 'dashboard'
+          icon: 'dashboard',
+          callback: () => this.$router.push({ path: '/' })
         },
         {
           id: 'app-sidebar-menu-item-students',
           title: 'Students',
-          icon: 'face'
+          icon: 'face',
+          callback: () => this.$router.push({ path: '/students' })
         },
         {
           id: 'app-sidebar-menu-item-classes',
           title: 'Classes',
-          icon: 'class'
+          icon: 'class',
+          callback: () => this.$router.push({ path: '/classes' })
         }
       ],
       options: [
         {
           id: 'app-sidebar-menu-item-account',
           title: 'Account',
-          icon: 'account_circle'
+          icon: 'account_circle',
+          callback: () => this.$router.push({ path: '/account' })
         },
         {
           id: 'app-sidebar-menu-item-logout',
           title: 'Logout',
-          icon: 'exit_to_app'
+          icon: 'exit_to_app',
+          callback: () => this.$emit('logout')
         },
         {
           id: 'app-sidebar-menu-item-about',
           title: 'About',
-          icon: 'info'
+          icon: 'info',
+          callback: () => this.$emit('about')
         }
       ]
     }
