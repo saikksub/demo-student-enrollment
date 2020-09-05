@@ -1,6 +1,10 @@
 <template>
-  <q-layout class="app-wrapper" view="lHh Lpr lFf">
-    <sidebar />
+  <q-layout
+    :compact-sidebar="compactSidebar"
+    class="app-wrapper"
+    view="lHh Lpr lFf"
+  >
+    <sidebar @toggle="toggleSidebar" :compact="compactSidebar" />
     <q-page-container class="page-wrapper">
       <router-view />
     </q-page-container>
@@ -16,7 +20,12 @@ export default {
   },
   data () {
     return {
-      leftDrawerOpen: false
+      compactSidebar: true
+    }
+  },
+  methods: {
+    toggleSidebar () {
+      this.compactSidebar = !this.compactSidebar
     }
   }
 }
@@ -25,6 +34,16 @@ export default {
 <style lang="scss">
   .app-wrapper {
     $sidebarWidth: 256px;
+    $sidebarWidthCompact: 56px;
+
+    &[compact-sidebar] {
+      & .sidebar {
+        width: $sidebarWidthCompact
+      }
+      & .page-wrapper {
+        left: $sidebarWidthCompact;
+      }
+    }
 
     & .sidebar {
       position: fixed;
@@ -32,6 +51,16 @@ export default {
       bottom: 0;
       left: 0;
       width: $sidebarWidth;
+      transition: 0.2s all ease-in-out;
+
+      & .sidebar-options {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: #ffffff;
+        padding-top: 8px;
+      }
     }
     & .page-wrapper {
       $appbarHeight: 56px;
@@ -41,6 +70,7 @@ export default {
       right: 0;
       bottom: 0;
       left: $sidebarWidth;
+      transition: 0.2s all ease-in-out;
 
        & .page-appbar {
         position: absolute;
