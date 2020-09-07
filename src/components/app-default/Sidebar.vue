@@ -10,7 +10,7 @@
       <template v-for="item in menu">
         <q-item :key="item.id" clickable v-ripple @click="item.callback">
           <q-item-section avatar>
-            <q-icon :name="item.icon" color="primary" />
+            <q-icon :name="item.icon" />
           </q-item-section>
 
           <q-item-section v-show="!compact">
@@ -29,7 +29,7 @@
         <template v-for="item in options">
           <q-item :key="item.id" clickable v-ripple @click="item.callback">
             <q-item-section avatar>
-              <q-icon :name="item.icon" color="primary" />
+              <q-icon :name="item.icon" />
             </q-item-section>
 
             <q-item-section v-show="!compact">
@@ -59,22 +59,28 @@ export default {
   data () {
     return {
       menu: [
-        {
+        /* {
           id: 'app-sidebar-menu-item-dashboard',
           title: 'Dashboard',
           icon: 'dashboard',
+          name: '',
+          type: 'page',
           callback: () => this.$router.push({ path: '/' })
-        },
+        }, */
         {
           id: 'app-sidebar-menu-item-students',
           title: 'Students',
           icon: 'face',
+          name: 'students',
+          type: 'page',
           callback: () => this.$router.push({ path: '/students' })
         },
         {
           id: 'app-sidebar-menu-item-classes',
           title: 'Classes',
           icon: 'class',
+          name: 'class',
+          type: 'page',
           callback: () => this.$router.push({ path: '/classes' })
         }
       ],
@@ -83,6 +89,8 @@ export default {
           id: 'app-sidebar-menu-item-account',
           title: 'Account',
           icon: 'account_circle',
+          name: 'account',
+          type: 'page',
           callback: () => this.$router.push({ path: '/account' })
         },
         {
@@ -95,6 +103,7 @@ export default {
           id: 'app-sidebar-menu-item-about',
           title: 'About',
           icon: 'info',
+          name: 'info',
           callback: () => this.$emit('about')
         }
       ]

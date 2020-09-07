@@ -100,7 +100,7 @@ export default {
       left: $sidebarWidth;
       transition: 0.2s all ease-in-out;
 
-       & .page-appbar {
+      & .page-appbar {
         position: absolute;
         top: 0;
         right: 0;
@@ -113,6 +113,13 @@ export default {
         right: 0;
         left: 0;
         height: $appbarHeight;
+
+        & .container {
+          width: auto;
+          max-width: 1200px;
+          display: block;
+          margin: auto
+        }
       }
     }
   }

@@ -27,6 +27,20 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Classes.vue') }
     ]
+  },
+  {
+    path: '/student/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/student/id.vue') }
+    ]
+  },
+  {
+    path: '/class/:id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/class/id.vue') }
+    ]
   }
 ]
 
